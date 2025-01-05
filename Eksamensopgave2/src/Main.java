@@ -21,43 +21,21 @@ public class Main {
         User u1 = new User(1, "William", 39181209);
         User u2 = new User(2, "Benedicte", 49481214);
 
-        LocalDateTime start = LocalDateTime.of(2025, 1, 6, 9, 30);
-        LocalDateTime end = LocalDateTime.of(2025, 1, 6, 10, 0);
-        System.out.println("Værelse 3 er ledigt: " + bS.isAvailable(r1, start, end));
+        bS.findAvailable(4,LocalDateTime.of(2025,01,01,18,30),LocalDateTime.of(2025,01,03,10,00));
 
-        // Test
-        Booking b1 = bS.book(r1, start, end, u1);
-        if (b1 != null) {
+        Booking booking = bS.book(r1,LocalDateTime.of(2025,01,01,18,30),LocalDateTime.of(2025,01,03,10,00),u1);
 
-            System.out.println("Booking lavet for værelse 1 af: " + u1.getName());
+        // Test for at se om et booket værelse bliver booket når det bookes
+        // bS.findAvailable(4,LocalDateTime.of(2025,01,01,19,30),LocalDateTime.of(2025,01,03,10,00));
 
-        } else {
+        // Test for at se om fejlbesked fungerer mht. overbooking
+        // bS.book(r1,LocalDateTime.of(2025,01,01,20,30),LocalDateTime.of(2025,01,03,10,00),u2);
 
-            System.out.println("Værelse 1 er desværre ikke ledigt...");
+        // Test for at se om den er tilgængelig efter at blive aflyst
+        bS.cancel(booking);
 
-        }
+        bS.findAvailable(4,LocalDateTime.of(2025,01,01,18,30),LocalDateTime.of(2025,01,03,10,00));
 
-        // Test 2
-        Booking b2 = bS.book(r1, start, end, u2);
-        if (b2 != null) {
-
-            System.out.println("Booking lavet for værelse 1 af: " + u1.getName());
-
-        } else {
-
-            System.out.println("Værelse 1 er desværre ikke ledigt...");
-
-        }
-
-        // Test 3
-        LocalDateTime start2 = LocalDateTime.of(2025,1,6,12,0);
-        LocalDateTime end2 = LocalDateTime.of(2025,1,6,14,0);
-        System.out.println("Tilgængelige værelser: "+bS.findAvailable(9,start2,end2));
-
-        // Test 4
-        bS.cancel(b1);
-        System.out.println("Værelse 1 reservation er annulleret!");
-        System.out.println("Værelse 1 er tilgængeligt: "+bS.isAvailable(r1, start2, end2));
 
     }
 }

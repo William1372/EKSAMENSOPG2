@@ -10,15 +10,15 @@ public class Room {
 
     }
 
-    public int getRoomId(){
-
-        return roomId;
-
-    }
-
     public int getCapacity(){
 
         return capacity;
+
+    }
+
+    public int getRoomId(){
+
+        return roomId;
 
     }
 

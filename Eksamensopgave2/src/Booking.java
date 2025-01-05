@@ -34,12 +34,6 @@ public class Booking {
 
     }
 
-    public User getUser(){
-
-        return user;
-
-    }
-
     @Override
     public String toString(){
 

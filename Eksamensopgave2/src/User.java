@@ -12,21 +12,9 @@ public class User {
 
     }
 
-    public int getUserId(){
-
-        return userId;
-
-    }
-
     public String getName(){
 
         return name;
-
-    }
-
-    public int getPhoneNumber(){
-
-        return phoneNumber;
 
     }
 
