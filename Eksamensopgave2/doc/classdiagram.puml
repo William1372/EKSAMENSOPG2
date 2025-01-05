@@ -1,0 +1,70 @@
+@startuml
+!pragma layout smetana
+
+class Main{
+
+    + static void main(String[] args)
+
+}
+
+class Booking{
+
+    - Room room
+    - User user
+    - LocalDateTime start
+    - LocalDateTime end
+
+    + Booking(room, start, end, user)
+    + Room getRoom()
+    + LocalDateTime getStart()
+    + LocalDateTime getEnd()
+    + String toString()
+
+}
+
+class BookingSystem{
+
+    - List<Room> rooms
+    - List<Booking> bookings
+
+    + boolean isAvailable(Room room, LocalDateTime start, LocalDateTime end)
+    + List<Room> findAvailable(int capacity, LocalDateTime start, LocalDateTime end)
+    + Booking book(Room room, LocalDateTime start, LocalDateTime end, User user)
+    + void cancel(Booking newBooking)
+    + void addRoom(Room room)
+
+}
+
+class Room{
+
+    - int roomId
+    - int capacity
+
+    + Room(roomId, capacity)
+    + int getCapacity()
+    + int getRoomId()
+    + String toString()
+
+}
+
+class User{
+
+    - int userId
+    - String name
+    - int phoneNumber
+
+    + User(userId, name, phoneNumber)
+    + String getName()
+    + String toString()
+
+}
+
+Main ..> BookingSystem
+BookingSystem --> Room : has-a
+BookingSystem --> Booking : has-a
+BookingSystem ..> User
+Booking --> Room : has-a
+Booking --> User : has-a
+Room ..> Booking
+
+@enduml
